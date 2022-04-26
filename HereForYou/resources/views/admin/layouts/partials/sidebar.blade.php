@@ -40,6 +40,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('admin.banks.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-folder"></i>
+              <p>
+                Bank
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('admin.users.index') }}" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
