@@ -63,13 +63,11 @@
               </p>
             </a>
           </li>
-          <p>
           <div class="nav-item">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
             document.getElementById('formLogout').submit();">
               <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>Logout
-              </p>
+              <p>Logout</p>
             </a>
             <form action="{{ route('logout') }}" method="post" id="formLogout">
               @csrf
