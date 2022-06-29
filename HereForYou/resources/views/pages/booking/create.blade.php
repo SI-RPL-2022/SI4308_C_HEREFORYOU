@@ -103,6 +103,20 @@
                             </div>
                             @enderror
                         </div>
+                        <div class="form-group formNone bank_id d-none">
+                            <label for="bank_id">Metode Pembayaran</label>
+                            <select name="bank_id" id="bank_id" class="form-control @error('bank_id') is-invalid @enderror">
+                                <option value="" disabled selected>-- Pilih Metode Pembayaran --</option>
+                                @foreach ($pembayaran as $pem)
+                                    <option value="{{ $pem->id }}">{{ $pem->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('bank_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                         <button type="button" class="btn btn-primary float-right btnBooking d-none">Booking Sekarang</button>
                     </form>
                 </div>
@@ -132,15 +146,20 @@
             $(this).on('click', function(){
                 $('.time').addClass('d-none');
                 $('.topic').removeClass('d-none');
-                $(this).html('Lanjut Pembayaran');
+                $(this).html('Lanjut Metode Pembayaran');
                 $(this).on('click', function(){
-                    $(this).attr('type','submit');
+                    $('.topic').addClass('d-none');
+                    $('.bank_id').removeClass('d-none');
+                    $(this).html('Lanjut Pembayaran');
+                    $(this).on('click',function(){
+                        $(this).attr('type','submit');
+                    })
                 })
             })
             // $('#form').submit();
         })
         $('#time').datetimepicker({
-        
+
             icons: { time: 'far fa-clock' },
             format: 'YYYY-MM-DD HH:mm:ss'
 

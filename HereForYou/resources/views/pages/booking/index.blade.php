@@ -44,17 +44,16 @@
                                         <span class="badge badge-success">SUCCESS</span>
                                         @elseif($item->status === 'PENDING')
                                         <span class="badge badge-info">PENDING</span>
-                                        @else 
+                                        @else
                                         <span class="badge badge-danger">FAILED</span>
                                         @endif
                                     </td>
                                     <td>{{ $item->created_at->translatedFormat('d/m/Y') }}</td>
                                     <td>
+                                        <a href="{{ route('invoice',$item->id) }}" class="btn btn-secondary btn-sm" target="_blank">Invoice</a>
                                         @if ($item->status === 'SUCCESS')
                                         <Button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalRating" data-id="{{ $item->id }}" data-psychologist_id="{{ $item->psychologist_id }}" id="btnRating">Beri Rating</Button>
-                                        @else
-                                        Tidak bisa
-                                        @endif   
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -81,13 +80,13 @@
               @csrf
               <input type="text" hidden name="psychologist_id" id="psychologist_id">
               <input type="text" hidden name="id" id="id">
-                @for ($i = 1;$i <= 5; $i++)  
+                @for ($i = 1;$i <= 5; $i++)
                 <div class="custom-control custom-radio">
                     <input type="radio" name="score" value="<?= $i; ?>" class="custom-control-input" id="defaultUnchecked<?= $i; ?>" required="required">
                     <label for="defaultUnchecked<?= $i; ?>" class="custom-control-label">
                         <?php for ($j = 0;$j < $i; $j++): ?>
                         <span class="fas fa-star text-warning"></span>
-                        <?php endfor ?> 
+                        <?php endfor ?>
                     </label>
                 </div>
                 @endfor

@@ -19,13 +19,10 @@
                     <p class="small text-center mt-3">
                         Ke Rekening Dibawah ini
                     </p>
-                    <div class="text-center">
-                        <img src="{{ $bank->logo() }}" alt="" class="img-fluid my-3" style="max-height: 60px;max-widht:80px">
-                    </div>
                     <h4 class="text-center">
-                        {{ $bank->number }}
+                        {{ $item->bank_name }}
                     </h4>
-                    <h6 class=" text-center">a.n {{ $bank->owner_name }}</h6>
+                    <h6 class=" text-center">{{ $item->bank_number }}</h6>
                 </div>
             </div>
             <div class="card mt-3">
