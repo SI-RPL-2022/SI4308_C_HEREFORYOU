@@ -133,18 +133,6 @@ class BankController extends Controller
     public function setStatus($id)
     {
         $item = Bank::findOrFail($id);
-        if(request('status') == 0)
-        {
-            $bankNonActive = Bank::whereNotIn('id',[$item->id])->where('status',1)->count();
-            if($bankNonActive < 1)
-            {
-                return redirect()->route('admin.banks.index')->with('error','Bank harus ada yang aktif');
-            }
-
-        }
-        Bank::where('status',1)->update([
-            'status' => 0
-        ]);
         $item->update([
             'status' => request('status')
         ]);

@@ -44,7 +44,7 @@
                </table>
             </div>
             <div class="tab-pane fade" id="v-pills-review" role="tabpanel" aria-labelledby="v-pills-review-tab">
-                <p class="mb-4"> 
+                <p class="mb-4">
                     Nilai : <span class="badge badge-success">
                         {{-- @for ($i = 0; $i < floor($item->score($item->category_id,$item->id)); $i++)
                                     <span class="fas fa-star text-warning"></span>

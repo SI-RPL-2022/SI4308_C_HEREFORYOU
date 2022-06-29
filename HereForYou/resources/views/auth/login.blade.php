@@ -4,7 +4,7 @@
 <div class="login-box">
     <div class="login-logo">
       <a href="#" class="mb-5">
-        <img src="{{ asset('assets/image/logohfy2.png') }}" alt="" class="img-fluid mb-4">
+        <img src="{{ asset('assets/image/logohfy2.png') }}" alt="" class="img-fluid mb-4"> 
       </a>
     </div>
     @if (session('error'))

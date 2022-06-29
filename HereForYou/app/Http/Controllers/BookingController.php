@@ -15,7 +15,8 @@ class BookingController extends Controller
         $psychologist = Psychologist::findOrFail($id);
         return view('pages.booking.create',[
             'title' => 'Booking',
-            'psychologist' => $psychologist
+            'psychologist' => $psychologist,
+            'pembayaran' => Bank::where('status',1)->orderBy('name','ASC')->get()
         ]);
     }
 
@@ -35,8 +36,9 @@ class BookingController extends Controller
         $data['cost'] = $psychologist->price_hourly*request('duration');
         $data['user_id'] = auth()->id();
         $data['number'] = Carbon::now()->translatedFormat('y') . Carbon::now()->translatedFormat('m') . Carbon::now()->translatedFormat('d') . rand(100,999);
-        $data['bank_name'] = Bank::where('status',1)->first()->name;
-        $data['bank_number'] = Bank::where('status',1)->first()->number;
+        $bank = Bank::findOrFail(request('bank_id'));
+        $data['bank_name'] = $bank->name;
+        $data['bank_number'] = $bank->number;
         Booking::create($data);
 
         return redirect()->route('booking.success',$data['number'])->with('success','Silahkan lakukan pembayaran');

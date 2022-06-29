@@ -15,4 +15,13 @@ class HistoryController extends Controller
             'items' => $items
         ]);
     }
+
+    public function invoice($id)
+    {
+        $item = Booking::findOrFail($id);
+        return view('pages.booking.invoice',[
+            'title' => 'Invoice #' . $item->number,
+            'item' => $item
+        ]);
+    }
 }

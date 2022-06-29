@@ -29,7 +29,7 @@
                             @endfor
                             <span>({{ $psychologist->reviews()->count() }})</span>
                         </div>
-                        
+
                     </p>
                     <a href="{{ route('consultations.show',$psychologist->id) }}" class="btn btn-info btn-sm px-3 float-right">Detail</a>
                 </div>

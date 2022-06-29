@@ -1,6 +1,8 @@
 <?php
 
+use App\Mail\SendNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +26,7 @@ Route::middleware(['auth','isadmin'])->group(function () {
         Route::resource('users',UserController::class);
         Route::resource('banks',BankController::class)->except('show');
         Route::get('banks/{id}/set','BankController@setStatus')->name('banks.set-status');
-        Route::resource('bookings',BookingController::class)->except('create','edit','update','store','show');
+        Route::resource('bookings',BookingController::class)->except('show');
         Route::get('bookings/{id}/set','BookingController@setStatus')->name('bookings.set-status');
         Route::resource('psychologists',PsychologistController::class);
         Route::get('psychologist/{id}/schedule/create','PsychologistScheduleController@create')->name('schedules.create');
@@ -46,4 +48,19 @@ Route::middleware('auth')->group(function(){
     Route::post('/consultation/rating', 'ConsultationController@rating')->name('consultation.rating');
     Route::post('/booking/process','BookingController@store')->name('booking.store');
     Route::get('/booking/{number}/success','BookingController@success')->name('booking.success');
+
+    // profile
+    Route::get('my-profile','ProfileController@index')->name('profile.index');
+    Route::post('my-profile','ProfileController@update')->name('profile.update');
+
+    // notification
+    Route::get('notifications','NotificationController@index')->name('notifications.index');
+    Route::post('notifications','NotificationController@update')->name('notifications.update');
+
+    // download invoice
+    Route::get('invoice/{id}','HistoryController@invoice')->name('invoice');
+});
+
+Route::get('/test',function(){
+    return view('admin.pages.email.notification');
 });
